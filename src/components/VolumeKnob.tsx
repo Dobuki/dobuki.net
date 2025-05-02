@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-const audioSrc = '/assets/beep-bop-sci-fi.mp3';
+const audioSrc = './assets/beep-bop-sci-fi.mp3';
 
 const VolumeKnob: React.FC = () => {
   const [volume, setVolume] = useState(0);
