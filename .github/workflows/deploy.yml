@@ -1,0 +1,34 @@
+name: Deploy to GitHub Pages with Bun
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install Bun
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          export BUN_INSTALL="$HOME/.bun"
+          echo "$BUN_INSTALL/bin" >> $GITHUB_PATH
+
+      # Install dependencies with Bun
+      - name: Install Dependencies
+        run: bun install
+
+      # Build the project with Bun
+      - name: Build
+        run: bun run build
+
+      # Deploy to GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
