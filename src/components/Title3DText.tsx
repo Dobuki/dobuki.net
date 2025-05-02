@@ -32,7 +32,7 @@ const Title3DText: React.FC<Title3DTextProps> = ({ text = 'DOBUKI STUDIO' }) => 
       // Vertical gradient: top to bottom
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
       gradient.addColorStop(0, '#0a1a4f'); // dark blue (top)
-      gradient.addColorStop(1, '#0000ff'); // blue (bottom)
+      gradient.addColorStop(1, '#cc00ff'); // blue (bottom)
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
@@ -60,7 +60,7 @@ const Title3DText: React.FC<Title3DTextProps> = ({ text = 'DOBUKI STUDIO' }) => 
         fontWeight={"bold"}
         outlineColor="#fff"
         outlineWidth={0.08}
-        outlineBlur={0.5}
+        outlineBlur={0}
         anchorX="center"
         anchorY="middle"
         material={material}
@@ -69,7 +69,7 @@ const Title3DText: React.FC<Title3DTextProps> = ({ text = 'DOBUKI STUDIO' }) => 
       </Text>
       {/* Muted reflection below the horizon */}
       <Text
-        position={[0, -5, -10]} // Just below the horizon
+        position={[0, -2, -10]} // Just below the horizon
         fontSize={fontSize}
         letterSpacing={-0.05}
         fontWeight={"bold"}

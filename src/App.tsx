@@ -15,17 +15,23 @@ const Placeholder = ({ title }: { title: string }) => (
   </div>
 );
 
+const SECTIONS: [string, string][] = [
+  ['/games', 'Games'],
+  ['/music', 'Music'],
+  ['/videos', 'Videos'],
+  ['/articles', 'Articles'],
+  ['/projects', 'Other Projects'],
+  ['/about', 'About Me'],
+];
+
 const App: React.FC = () => {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/games" element={<Placeholder title="Games" />} />
-        <Route path="/music" element={<Placeholder title="Music" />} />
-        <Route path="/projects" element={<Placeholder title="Other Projects" />} />
-        <Route path="/about" element={<Placeholder title="About Me" />} />
+        {SECTIONS.map(([path, title]) => <Route path={path} element={<Placeholder title={title} />} />)}
         <Route path="*" element={null} />
       </Routes>
+      <Navbar sections={SECTIONS} />
       <div style={{ width: '100vw', height: '100vh', background: '#18122B' }}>
         <Canvas camera={{ position: [0, 10, 20], fov: 60 }}>
           <StarsBackground />

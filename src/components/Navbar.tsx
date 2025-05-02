@@ -29,12 +29,16 @@ const linkStyle: React.CSSProperties = {
   outline: 'none',
 };
 
-export default function Navbar() {
+interface Props {
+  sections: [string, string][]
+}
+
+export default function Navbar({ sections }: Props) {
   // Add neon glow on hover/focus only
   const [hovered, setHovered] = React.useState<string | null>(null);
   return (
     <nav style={navStyle}>
-      {[['/games', 'Games'], ['/music', 'Music'], ['/projects', 'Other Projects'], ['/about', 'About Me']].map(([to, label]) => (
+      {sections.map(([to, label]) => (
         <Link
           key={to}
           to={to}
