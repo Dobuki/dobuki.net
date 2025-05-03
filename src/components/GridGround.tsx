@@ -7,7 +7,7 @@ const GridGround: React.FC = () => {
   // Animate the grid's position.z to move towards the camera
   useFrame((state, delta) => {
     if (gridRef.current) {
-      gridRef.current.position.z += delta * 2; // Adjust speed as desired
+      gridRef.current.position.z += delta * 1; // Adjust speed as desired
       // Loop the grid position for infinite effect
       if (gridRef.current.position.z > 5) {
         gridRef.current.position.z = 0;
@@ -28,6 +28,7 @@ const GridGround: React.FC = () => {
       fadeDistance={40}
       fadeStrength={3}
       infiniteGrid={true}
+      cellColor="#00bfff"
     />
   );
 };

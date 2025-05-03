@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const navStyle: React.CSSProperties = {
   position: 'fixed',
@@ -29,35 +29,46 @@ const linkStyle: React.CSSProperties = {
   outline: 'none',
 };
 
+const activeLinkStyle: React.CSSProperties = {
+  color: '#00fff7',
+  textShadow: '0 0 24px #00fff7, 0 0 48px #00fff7, 0 0 64px #00fff7, 0 0 96px #00fff7',
+};
+
 interface Props {
   sections: [string, string][]
 }
 
 export default function Navbar({ sections }: Props) {
-  // Add neon glow on hover/focus only
+  const location = useLocation();
   const [hovered, setHovered] = React.useState<string | null>(null);
+
   return (
     <nav style={navStyle}>
-      {sections.map(([to, label]) => (
-        <Link
-          key={to}
-          to={to}
-          style={{
-            ...linkStyle,
-            color: hovered === to ? '#00fff7' : linkStyle.color,
-            textShadow:
-              hovered === to
-                ? '0 0 24px #00fff7, 0 0 48px #00fff7, 0 0 64px #00fff7, 0 0 96px #00fff7'
-                : linkStyle.textShadow,
-          }}
-          onMouseEnter={() => setHovered(to)}
-          onMouseLeave={() => setHovered(null)}
-          onFocus={() => setHovered(to)}
-          onBlur={() => setHovered(null)}
-        >
-          {label}
-        </Link>
-      ))}
+      {sections.map(([to, label]) => {
+        const isActive = location.pathname === to;
+        const isHovered = hovered === to;
+
+        return (
+          <Link
+            key={to}
+            to={to}
+            style={{
+              ...linkStyle,
+              ...(isActive ? activeLinkStyle : {}),
+              ...(isHovered && !isActive ? {
+                color: '#00fff7',
+                textShadow: '0 0 24px #00fff7, 0 0 48px #00fff7, 0 0 64px #00fff7, 0 0 96px #00fff7'
+              } : {})
+            }}
+            onMouseEnter={() => setHovered(to)}
+            onMouseLeave={() => setHovered(null)}
+            onFocus={() => setHovered(to)}
+            onBlur={() => setHovered(null)}
+          >
+            {label}
+          </Link>
+        );
+      })}
     </nav>
   );
 } 

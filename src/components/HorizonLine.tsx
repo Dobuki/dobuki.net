@@ -1,26 +1,28 @@
 import React from 'react';
 import * as THREE from 'three';
 
-const HORIZON_Y = 2.5;
+const HORIZON_Y = -20;
+const HORIZON_Z = -100;
+const MUL = 4;
 
 // More points for a smoother, progressive color change
 const points = [
-  new THREE.Vector3(-40, HORIZON_Y, -10), // far left
-  new THREE.Vector3(-20, HORIZON_Y, -10), // left
-  new THREE.Vector3(-10, HORIZON_Y, -10), // left mid
-  new THREE.Vector3(-4, HORIZON_Y, -10),  // left near center
-  new THREE.Vector3(-1, HORIZON_Y, -10),  // just left of center
-  new THREE.Vector3(0, HORIZON_Y, -10),   // center
-  new THREE.Vector3(1, HORIZON_Y, -10),   // just right of center
-  new THREE.Vector3(4, HORIZON_Y, -10),   // right near center
-  new THREE.Vector3(10, HORIZON_Y, -10),  // right mid
-  new THREE.Vector3(20, HORIZON_Y, -10),  // right
-  new THREE.Vector3(40, HORIZON_Y, -10),  // far right
+  new THREE.Vector3(-40 * MUL, HORIZON_Y, HORIZON_Z), // far left
+  new THREE.Vector3(-20 * MUL, HORIZON_Y, HORIZON_Z), // left
+  new THREE.Vector3(-10 * MUL, HORIZON_Y, HORIZON_Z), // left mid
+  new THREE.Vector3(-4 * MUL, HORIZON_Y, HORIZON_Z),  // left near center
+  new THREE.Vector3(-1 * MUL, HORIZON_Y, HORIZON_Z),  // just left of center
+  new THREE.Vector3(0 * MUL, HORIZON_Y, HORIZON_Z),   // center
+  new THREE.Vector3(1 * MUL, HORIZON_Y, HORIZON_Z),   // just right of center
+  new THREE.Vector3(4 * MUL, HORIZON_Y, HORIZON_Z),   // right near center
+  new THREE.Vector3(10 * MUL, HORIZON_Y, HORIZON_Z),  // right mid
+  new THREE.Vector3(20 * MUL, HORIZON_Y, HORIZON_Z),  // right
+  new THREE.Vector3(40 * MUL, HORIZON_Y, HORIZON_Z),  // far right
 ];
 
 // Progressive color: blue shades -> white -> blue shades
 const colors = [
-  new THREE.Color('#00bfff'),      // far left (blue)
+  new THREE.Color('#009999'),      // far left (blue)
   new THREE.Color('#00cfff'),      // left (lighter blue)
   new THREE.Color('#00eaff'),      // left mid (even lighter blue)
   new THREE.Color('#fff'),         // left near center (white)
@@ -30,7 +32,7 @@ const colors = [
   new THREE.Color('#fff'),         // right near center (white)
   new THREE.Color('#00eaff'),      // right mid (even lighter blue)
   new THREE.Color('#00cfff'),      // right (lighter blue)
-  new THREE.Color('#00bfff'),      // far right (blue)
+  new THREE.Color('#009999'),      // far right (blue)
 ];
 
 const HorizonLine: React.FC = () => {
@@ -38,7 +40,7 @@ const HorizonLine: React.FC = () => {
     const geometry = new THREE.BufferGeometry().setFromPoints(points);
     const colorArray = new Float32Array(colors.flatMap(c => [c.r, c.g, c.b]));
     geometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
-    const material = new THREE.LineBasicMaterial({ vertexColors: true, linewidth: 20 });
+    const material = new THREE.LineBasicMaterial({ vertexColors: true, linewidth: 100 });
     return new THREE.Line(geometry, material);
   }, []);
 

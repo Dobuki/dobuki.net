@@ -29,6 +29,11 @@ const VolumeKnob: React.FC = () => {
     }
   }, [volume]);
 
+  // Toggle volume between 0 and 0.5
+  const toggleVolume = () => {
+    setVolume(volume === 0 ? 1 : 0);
+  };
+
   // Speaker emoji: on if volume > 0, off if 0
   const speakerEmoji = volume > 0 ? '🔊' : '🔇';
 
@@ -57,7 +62,20 @@ const VolumeKnob: React.FC = () => {
       onBlur={() => setActive(false)}
       tabIndex={-1}
     >
-      <span style={{ fontSize: 22, marginRight: 8 }}>{speakerEmoji}</span>
+      <span
+        style={{
+          fontSize: 22,
+          marginRight: 8,
+          cursor: 'pointer',
+          transition: 'transform 0.2s',
+          transform: active ? 'scale(1.1)' : 'scale(1)'
+        }}
+        onClick={toggleVolume}
+        role="button"
+        aria-label="Toggle sound"
+      >
+        {speakerEmoji}
+      </span>
       <input
         type="range"
         min={0}
