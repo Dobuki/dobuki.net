@@ -13,6 +13,7 @@ import * as THREE from 'three';
 
 const SectionTitle = () => {
   const location = useLocation();
+  console.log(location, SECTIONS);
   const currentSection = SECTIONS.find(([path]) => path === location.pathname);
   const title = currentSection ? currentSection[1] : '';
 
