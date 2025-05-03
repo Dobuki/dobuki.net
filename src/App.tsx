@@ -74,12 +74,12 @@ const SectionContent = () => {
 };
 
 const SECTIONS: [string, string][] = [
-  ['/games', 'Games'],
-  ['/music', 'Music'],
-  ['/videos', 'Videos'],
-  ['/articles', 'Articles'],
-  ['/projects', 'Other Projects'],
-  ['/about', 'About Me'],
+  ['./games', 'Games'],
+  ['./music', 'Music'],
+  ['./videos', 'Videos'],
+  ['./articles', 'Articles'],
+  ['./projects', 'Other Projects'],
+  ['./about', 'About Me'],
 ];
 
 const App: React.FC = () => {
