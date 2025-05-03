@@ -8,7 +8,7 @@ import VolumeKnob from './components/VolumeKnob';
 import Navbar from './components/Navbar';
 import AnimatedBox from './components/AnimatedBox';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import * as THREE from 'three';
 
 const SectionTitle = () => {
